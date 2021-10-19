@@ -1,2 +1,58 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav>
+      <mat-nav-list (click)="sidenav.close()">
+        <a mat-list-item [routerLink]="['/']" routerLinkActive="router-link-active">
+          <mat-icon>library_books</mat-icon>
+          <span> Courses </span>
+        </a>
+        <a mat-list-item [routerLink]="['/about']" routerLinkActive="router-link-active">
+          <mat-icon>question_answer</mat-icon>
+          <span> About </span>
+        </a>
+        <a mat-list-item [routerLink]="['/']" routerLinkActive="router-link-active">
+          <mat-icon>person_add</mat-icon>
+          <span> Register </span>
+        </a>
+        <a mat-list-item [routerLink]="['/']" routerLinkActive="router-link-active">
+          <mat-icon>account_circle</mat-icon>
+          <span> Login </span>
+        </a>
+        <!-- <a [routerLink]="['/about']" routerLinkActive="router-link-active">About</a> -->
+      </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.open()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <!-- Create a dropdown -->
+      <a mat-button [matMenuTriggerFor]="dropdown">Screens</a>
+
+      <mat-menu #dropdown>
+        <button mat-menu-item [routerLink]="['/']" routerLinkActive="router-link-active">Courses</button>
+        <button mat-menu-item [routerLink]="['/']" routerLinkActive="router-link-active" >About</button>
+      </mat-menu>
+
+      <!-- End of dropdown -->
+
+      <a mat-button [routerLink]="['/']" routerLinkActive="router-link-active">
+        <mat-icon>account_circle</mat-icon>
+        <span> Login </span>
+      </a>
+
+      <a mat-button [routerLink]="['/']" routerLinkActive="router-link-active">
+        <mat-icon>account_circle</mat-icon>
+        <span> Register </span>
+      </a>
+    </mat-toolbar>
 
 
+
+
+
+    <router-outlet></router-outlet>
+</mat-sidenav-container>
+
+<!-- <mat-slider min="1" max="50" step="0.5" value="1.5"></mat-slider> -->
