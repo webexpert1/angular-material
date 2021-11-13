@@ -5,6 +5,7 @@ import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import {Course} from "../model/course";
 import {CoursesService} from "../services/courses.service";
+import { LessonsDataSource } from '../services/lessons.datasource';
 import {debounceTime, distinctUntilChanged, startWith, tap, delay} from 'rxjs/operators';
 import {merge, fromEvent} from "rxjs";
 
@@ -17,7 +18,8 @@ import {merge, fromEvent} from "rxjs";
 export class CourseComponent implements OnInit, AfterViewInit {
 
     course:Course;
-
+    dataSource = new MatTableDataSource([]);
+    displayedColumns = ["seqNo", "description", "duration"];
     lessons = [
        {
         id: 120,
@@ -106,8 +108,9 @@ export class CourseComponent implements OnInit, AfterViewInit {
     ngOnInit() {
 
         this.course = this.route.snapshot.data["course"];
-
-
+        this.coursesService.findAllCourseLessons(this.course.id)
+              .subscribe(lessons => this.dataSource.data = lessons);
+        // this.dataSource = new LessonsDataSource(this.course);
     }
 
     ngAfterViewInit() {
