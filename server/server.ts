@@ -5,10 +5,10 @@ import {Application} from "express";
 import {getAllCourses, getCourseById} from "./get-courses.route";
 import {searchLessons} from "./search-lessons.route";
 
-
+const cors = require('cors');
 const app: Application = express();
 
-
+app.use(cors());
 app.route('/api/courses').get(getAllCourses);
 
 app.route('/api/courses/:id').get(getCourseById);
